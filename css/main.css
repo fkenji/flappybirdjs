@@ -1,6 +1,6 @@
 .screen {
   width: 800px;
-  height: 400px;
+  height: 600px;
   border: 1px solid red;
   position: relative;
   overflow: hidden;
@@ -16,8 +16,6 @@
 }
 
 .scene {
-  width:800px;
-  height: 400px;
   background-color: blue;
   display: inline-block;
   border: 1px solid black;

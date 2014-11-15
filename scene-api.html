@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title></title>
+  <script src="js/vendor/jquery.js"></script>
+  <!-- <link rel="stylesheet" href="css/bird.css">
+  <link rel="stylesheet" href="css/scene.css"> -->
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/game.js"></script>
+  <script src="js/bird.js"></script>
+  <script src="js/scene.js"></script>
+
+  <style>
+
+  #screen {
+    height:600px;
+    border: 1px solid;
+    background-color:steelblue;
+  }
+
+  </style>
+</head>
+<body>
+  <div id="screen" >
+  </div>
+
+  <script>
+  // $(function() {
+    var scene = new Scene("#screen");
+    scene.build()
+    scene.start()
+
+    var oldScene = null;
+
+    setInterval(function() {
+      if(scene.aboutToEnd()) {
+        console.log('about to end..')
+
+            scene = new Scene("#screen");
+            scene.build()
+            scene.start()
+      }
+
+      if(oldScene && oldScene.hasEnded()) {
+        oldScene.destroy()
+      }
+    }, 100)
+  // });
+
+  </script>
+
+</body>
+</html>

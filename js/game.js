@@ -9,13 +9,19 @@ var FlappyGame = (function($) {
   _FlappyGame.prototype.start = function() {
     this.$scene.start();
     var self = this
-    setInterval(function() {
+    var ended = false;
 
-      if(self.$scene.hasEnded()){
+    setInterval(function() {
+      if(self.$scene.hasEnded()) {
         self.$scene.destroy()
       }
 
-    }, 100)
+    }, 10)
+
+  }
+
+  _FlappyGame.prototype.hasEnded = function() {
+
   }
 
   _FlappyGame.prototype._build = function(el) {
@@ -25,8 +31,9 @@ var FlappyGame = (function($) {
     this.$bird = new Bird(this.$el);
     this.$bird.build();
 
-    this.$scene = new Scene(this.$el) //scene has pipes
+    this.$scene = new Scene(this.$el) 
     this.$scene.build();
+
   }
 
   return _FlappyGame;

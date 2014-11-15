@@ -21,6 +21,10 @@ var Scene = (function($) {
     return this.$el.position().left + this.$screen.width() <= 0
   }
 
+  _Scene.prototype.destroy = function() {
+    this.$el.remove()
+  }
+
   return _Scene
 
 })(jQuery);

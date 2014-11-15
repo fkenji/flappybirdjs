@@ -3,18 +3,23 @@ var FlappyGame = (function($) {
 
   function _FlappyGame(sourceEl) {
     this.$el = $(sourceEl)
-    _build.call(this, this.$el);
+    this._build(this.$el);
   }
 
   _FlappyGame.prototype.start = function() {
     this.$scene.start();
     var self = this
-    // setInterval(function() {
-    //   console.log(self.$scene.hasEnded())
-    // }, 100)
+    setInterval(function() {
+
+      if(self.$scene.hasEnded()){
+        self.$scene.destroy()
+      }
+
+    }, 100)
   }
 
-  function _build(el) {
+  _FlappyGame.prototype._build = function(el) {
+    console.log('FlappyGame.build')
     this.$el.addClass('screen')
 
     this.$bird = new Bird(this.$el);

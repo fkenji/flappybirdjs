@@ -14,7 +14,35 @@ var Scene = (function($) {
   }
 
   _Scene.prototype.build = function() {
+    //positioning
     this.$el.css("left", this.$screen.width())
+
+    var heightFactor = 0.75
+  
+      new Obstacle({
+        source: this.$el,
+        position: "5%",
+        height: Math.random() * (this.$el.height() * heightFactor)
+      }).build()
+    
+      new Obstacle({
+        source: this.$el,
+        position: "35%",
+        height: Math.random() * (this.$el.height() * heightFactor)
+      }).build()
+
+      new Obstacle({
+        source: this.$el,
+        position: "65%",
+        height: Math.random() * (this.$el.height() * heightFactor)
+      }).build()       
+
+      new Obstacle({
+        source: this.$el,
+        position: "85%",
+        height: Math.random() * (this.$el.height() * heightFactor)
+      }).build()         
+
     this.$screen.append(this.$el);
   }
 
@@ -27,7 +55,7 @@ var Scene = (function($) {
   }
 
   _Scene.prototype.aboutToEnd = function() {
-    return this.$el.position().left + this.$screen.width() < (this.$screen.width() / 1.5)
+    return this.$el.position().left + this.$screen.width() < (this.$screen.width() / 1.25)
   }  
 
   _Scene.prototype.destroy = function() {

@@ -8,6 +8,7 @@
   <script src="js/game.js"></script>
   <script src="js/bird.js"></script>
   <script src="js/scene.js"></script>
+  <script src="js/obstacle.js"></script>
 
   <style>
 
@@ -34,13 +35,14 @@
     setInterval(function() {
       if(scene.aboutToEnd()) {
         console.log('about to end..')
-
+            oldScene = scene;
             scene = new Scene("#screen");
             scene.build()
             scene.start()
       }
 
       if(oldScene && oldScene.hasEnded()) {
+        console.log('gonna destroy', oldScene)
         oldScene.destroy()
       }
     }, 100)

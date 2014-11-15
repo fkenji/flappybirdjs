@@ -4,6 +4,7 @@
   border: 1px solid red;
   position: relative;
   overflow: hidden;
+  z-index:0;
 }
 
 #bird {
@@ -19,5 +20,12 @@
   background-color: blue;
   display: inline-block;
   border: 1px solid black;
+  position: absolute;
+}
+
+.obstacle {
+  width: 10%;
+  background-color: green;
+  z-index:20;
   position: absolute;
 }

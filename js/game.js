@@ -36,10 +36,11 @@ var FlappyGame = (function($) {
   }
 
   _FlappyGame.prototype.end = function() {
+
+    clearInterval(this.interval)
     this.$el.stop()
     this.scene.stop()
-    this.bird.stop()
-    clearInterval(this.interval)
+    this.bird.stop()    
   }
 
   _FlappyGame.prototype._build = function(el) {

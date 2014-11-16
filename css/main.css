@@ -29,3 +29,11 @@
   z-index:20;
   position: absolute;
 }
+
+.obstacle.top {
+  top: 0;
+}
+
+.obstacle.bottom {
+  bottom: 0;
+}

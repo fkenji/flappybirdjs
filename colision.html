@@ -1,85 +1,42 @@
 <html>
 <head>
   <title></title>
-  <script src="js/jquery.js"></script>
+  <script src="js/vendor/jquery.js"></script>
+  <!-- <link rel="stylesheet" href="css/bird.css">
+  <link rel="stylesheet" href="css/scene.css"> -->
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/game.js"></script>
+  <script src="js/bird.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/obstacle.js"></script>
+  <script src="js/jquery.overlaps.js"></script>
   <style>
 
-  * {
-    padding:0;
-    margin: 0;
-  }
+  #bird {  
+      background: url('images/kirby-sprite.png');
+  }  
 
   #screen {
-    width: 800px;
-    height: 400px;
-    border: 1px solid red;
-    position: relative;
-    overflow: hidden;
+    height: 100%
   }
-
-  .scene {
-    width:800px;
-    height: 400px;
-    background-color: blue;
-    display: inline-block;
-    border: 1px solid black;
-    position: absolute;
-    z-index:0;
-  }
-
-  #scene1 {
-    right:0px;
-  }
-
-  .pipe {
-    height:100px;
-    width: 10%;
-    background-color: green;
-    display: inline-block;
-    position: absolute
-  }
-
-  #bird {
-    width :50px;
-    height:50px;
-    top:40px;
-    left:0;
-    background-color:red;
-    position: absolute;
-    z-index:1;
-  }
-
   </style>
-  <script>
-
-  $(function() {
-
-    $scene = $("#scene1")
-    $bird = $("#bird")
-    $pipe = $(".pipe:first")
-
-    console.log("collision?", isCollisionTop($bird, $pipe))
-
-    function isCollisionTop(bird, pipe) {
-    
-      var bird_pos = (bird.position().top);
-      var pipe_pos = (pipe.height() + pipe.position().top)
-      console.log('bird:',bird_pos, 'pipe:', pipe_pos)
-      return  bird_pos < pipe_pos
-    }
-
-    window.isCollisionTop = isCollisionTop
-  })
-
-  </script>
 </head>
 <body>
   <div id="screen">
-    <div id="bird"></div>
-    <div class="scene" id="scene1">
-      <div style="left:0; height:200px" class="pipe"></div>
-      <!-- <div style="left:200; height: 200px" class="pipe"></div>       -->
-    </div>
   </div>
+
+  <script>
+    var scene = new Scene("#screen")
+    scene.build()
+    
+    var bird = new Bird("#screen")
+    bird.build()
+
+    var obstacles = scene.obstacles
+
+    var obstacle = obstacles[0]
+
+  </script>
+
 </body>
 </html>

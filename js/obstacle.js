@@ -3,7 +3,6 @@ var Obstacle = (function($) {
   function _Obstacle(spec) {
     this.position = spec.position
 
-    
     this.$source = $(spec.source)
     this.$el = this.$source
 
@@ -27,12 +26,10 @@ var Obstacle = (function($) {
     this.$bottom.addClass("obstacle").addClass("bottom")
     this.$bottom.height(bottomHeight)
 
-    console.log('topHeight', topHeight, 'bottomHeight', bottomHeight)
 
   }
 
   _Obstacle.prototype.build = function() {
-    console.log('position', this.position)
     this.$top.css("left", this.position)
     this.$bottom.css("left", this.position)
     this.$source.append(this.$top);

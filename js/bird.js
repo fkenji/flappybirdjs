@@ -5,7 +5,7 @@ var Bird = (function ($) {
     var $div = $("<div>")
     $div.attr("id", "bird") 
     this.$el = $div
-    this.$screen = screen
+    this.$screen = $(screen)
   }
 
 
@@ -41,6 +41,9 @@ var Bird = (function ($) {
     this.$el.animate({ "top": "+="+ height}, 4500);
   }  
 
+  _Bird.prototype.collidesWith = function(obstacle) {
+    return this.$el.overlaps(obstacle.$top).hits.length > 0 || this.$el.overlaps(obstacle.$bottom).hits.length > 0
+  }
 
   return _Bird;
 

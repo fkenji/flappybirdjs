@@ -17,25 +17,15 @@ var Scene = (function($) {
     //positioning
     this.$el.css("left", this.$screen.width())
   
-      new Obstacle({
-        source: this.$el,
-        position: "5%",
-      }).build()
+    this.obstacles = []
+    this.obstacles.push(new Obstacle({ source: this.$el, position: "5%",}))
+    this.obstacles.push(new Obstacle({ source: this.$el, position: "40%",}))
+    this.obstacles.push(new Obstacle({ source: this.$el, position: "85%",}))
     
-      new Obstacle({
-        source: this.$el,
-        position: "40%",
-      }).build()
 
-      new Obstacle({
-        source: this.$el,
-        position: "85%",
-      }).build()       
-
-      // new Obstacle({
-      //   source: this.$el,
-      //   position: "90%",
-      // }).build()         
+    this.obstacles.forEach(function(obstacle){
+      obstacle.build()
+    })
 
     this.$screen.append(this.$el);
   }
@@ -54,6 +44,15 @@ var Scene = (function($) {
 
   _Scene.prototype.destroy = function() {
     this.$el.remove()
+  }
+
+  _Scene.prototype.hasCollisionsWith = function(the_bird) {
+    for(var i = 0; i < this.obstacles.length; i++) {
+      if(the_bird.collidesWith(this.obstacles[i])) {
+        return true;
+      }
+    }
+    return false;
   }
 
   return _Scene

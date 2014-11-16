@@ -41,6 +41,13 @@ var Bird = (function ($) {
     this.$el.animate({ "top": "+="+ height}, 4500);
   }  
 
+  _Bird.prototype.stop = function() {
+    $("body").off('keyup')
+    
+    this.$el.stop() 
+    this.$el.clearQueue() 
+  }
+
   _Bird.prototype.collidesWith = function(obstacle) {
     return this.$el.overlaps(obstacle.$top).hits.length > 0 || this.$el.overlaps(obstacle.$bottom).hits.length > 0
   }

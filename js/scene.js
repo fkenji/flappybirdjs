@@ -19,7 +19,7 @@ var Scene = (function($) {
   
     this.obstacles = []
     this.obstacles.push(new Obstacle({ source: this.$el, position: "5%",}))
-    this.obstacles.push(new Obstacle({ source: this.$el, position: "40%",}))
+    this.obstacles.push(new Obstacle({ source: this.$el, position: "45%",}))
     this.obstacles.push(new Obstacle({ source: this.$el, position: "85%",}))
     
 
@@ -45,6 +45,10 @@ var Scene = (function($) {
   _Scene.prototype.destroy = function() {
     this.$el.remove()
   }
+
+  _Scene.prototype.stop = function() {
+    this.$el.stop()
+  }  
 
   _Scene.prototype.hasCollisionsWith = function(the_bird) {
     for(var i = 0; i < this.obstacles.length; i++) {

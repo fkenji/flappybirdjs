@@ -15,7 +15,7 @@ var FlappyGame = (function($) {
 
     var self = this
 
-    setInterval(function() {
+    this.interval = setInterval(function() {
 
       if(self.scene.hasCollisionsWith(self.bird)){
         self.end()
@@ -31,16 +31,15 @@ var FlappyGame = (function($) {
       if(self.previousScene && self.previousScene.hasEnded()) {
         self.previousScene.destroy()
       }
-    }, 100)
+    }, 10)
 
   }
 
   _FlappyGame.prototype.end = function() {
-    var $img = $("<img>")
-    $img.attr('src', "images/explosion.gif")
-    $img.attr('height', this.$el.height())
-    $img.attr('width', this.$el.width())
-    this.$el.replaceWith($img)
+    this.$el.stop()
+    this.scene.stop()
+    this.bird.stop()
+    clearInterval(this.interval)
   }
 
   _FlappyGame.prototype._build = function(el) {

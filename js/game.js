@@ -4,19 +4,31 @@ var FlappyGame = (function($) {
   function _FlappyGame(sourceEl) {
     this.$el = $(sourceEl)
     this._build(this.$el);
+    this.scene = null;
+    this.previousScene = null;
   }
 
   _FlappyGame.prototype.start = function() {
-    this.$scene.start();
+    this.scene = new Scene(this.$el) 
+    this.scene.build();    
+    this.scene.start();
+
     var self = this
-    var ended = false;
 
     setInterval(function() {
-      if(self.$scene.hasEnded()) {
-        self.$scene.destroy()
+      if(self.scene.aboutToEnd()) {
+        console.log('about to end..')
+            self.previousScene = self.scene;
+            self.scene = new Scene("#screen");
+            self.scene.build()
+            self.scene.start()
       }
 
-    }, 10)
+      if(self.previousScene && self.previousScene.hasEnded()) {
+        console.log('gonna destroy', self.previousScene)
+        self.previousScene.destroy()
+      }
+    }, 100)
 
   }
 
@@ -31,8 +43,6 @@ var FlappyGame = (function($) {
     this.$bird = new Bird(this.$el);
     this.$bird.build();
 
-    this.$scene = new Scene(this.$el) 
-    this.$scene.build();
 
   }
 

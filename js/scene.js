@@ -24,18 +24,18 @@ var Scene = (function($) {
     
       new Obstacle({
         source: this.$el,
-        position: "35%",
+        position: "40%",
       }).build()
 
       new Obstacle({
         source: this.$el,
-        position: "65%",
+        position: "85%",
       }).build()       
 
-      new Obstacle({
-        source: this.$el,
-        position: "90%",
-      }).build()         
+      // new Obstacle({
+      //   source: this.$el,
+      //   position: "90%",
+      // }).build()         
 
     this.$screen.append(this.$el);
   }

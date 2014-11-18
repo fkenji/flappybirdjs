@@ -48,7 +48,7 @@ var Bird = (function ($) {
     this.$el.clearQueue() 
   }
 
-  _Bird.prototype.hasDied = function() {
+  _Bird.prototype.hasGoneOutbounds = function() {
     return this.$el.position().top > this.$screen.height() || this.$el.position().top < 0;
   }
 

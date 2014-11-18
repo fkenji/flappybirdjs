@@ -3,28 +3,22 @@ var FlappyGame = (function($) {
 
   function _FlappyGame(sourceEl) {
     this.$el = $(sourceEl)
-    this._build(this.$el);
     this.scene = null;
     this.previousScene = null;
   }
 
   _FlappyGame.prototype.start = function() {
-    this.scene = new Scene(this.$el) 
-    this.scene.build();    
-    this.scene.start();
-
-    var self = this
-
+    var self = this;
     this.interval = setInterval(function() {
-      if(self.scene.hasCollisionsWith(self.bird) || self.bird.hasGoneOutbounds()){
+      if(self.currentScene.hasCollisionsWith(self.bird) || self.bird.hasGoneOutbounds()){
         self.end()
       }
 
-      if(self.scene.aboutToEnd()) {
-            self.previousScene = self.scene;
-            self.scene = new Scene("#screen");
-            self.scene.build()
-            self.scene.start()
+      if(self.currentScene.aboutToEnd()) {
+            self.previousScene = self.currentScene;
+            self.currentScene = new Scene("#screen");
+            self.currentScene.build()
+            self.currentScene.start()
       }
 
       if(self.previousScene && self.previousScene.hasEnded()) {
@@ -38,18 +32,19 @@ var FlappyGame = (function($) {
 
     clearInterval(this.interval)
     this.$el.stop()
-    this.scene.stop()
+    this.currentScene.stop()
     this.bird.stop()    
   }
 
-  _FlappyGame.prototype._build = function(el) {
-    console.log('FlappyGame.build')
+  _FlappyGame.prototype.build = function(el) {
     this.$el.addClass('screen')
 
     this.bird = new Bird(this.$el);
     this.bird.build();
 
-
+    this.currentScene = new Scene(this.$el) 
+    this.currentScene.build();    
+    this.currentScene.start();
   }
 
   return _FlappyGame;

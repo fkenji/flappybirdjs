@@ -48,6 +48,10 @@ var Bird = (function ($) {
     this.$el.clearQueue() 
   }
 
+  _Bird.prototype.hasDied = function() {
+    return this.$el.position().top > this.$screen.height() || this.$el.position().top < 0;
+  }
+
   _Bird.prototype.collidesWith = function(obstacle) {
     return this.$el.overlaps(obstacle.$top).hits.length > 0 || this.$el.overlaps(obstacle.$bottom).hits.length > 0
   }

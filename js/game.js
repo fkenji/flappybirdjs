@@ -16,8 +16,7 @@ var FlappyGame = (function($) {
     var self = this
 
     this.interval = setInterval(function() {
-
-      if(self.scene.hasCollisionsWith(self.bird)){
+      if(self.scene.hasCollisionsWith(self.bird) || self.bird.hasDied()){
         self.end()
       }
 

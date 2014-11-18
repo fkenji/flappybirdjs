@@ -1,9 +1,8 @@
 .screen {
-
-  height: 600px;
+  height: 75%;
   position: relative;
   overflow: hidden;
-  background: url('../images/flappy-background.png') repeat-x;
+  background-color: lightblue;
   z-index:0;
 }
 

@@ -31,7 +31,7 @@ body {
 }
 
 .obstacle {
-  width: 10%;  
+  width: 140px;  
   z-index:20;
   position: absolute;
 }

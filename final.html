@@ -2,20 +2,17 @@
 <head>
   <title></title>
   <script src="js/vendor/jquery.js"></script>
-  <!-- <link rel="stylesheet" href="css/bird.css">
-  <link rel="stylesheet" href="css/scene.css"> -->
+  <script src="js/motio.js"></script>
+  <script src="js/jquery.overlaps.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <script src="js/game.js"></script>
   <script src="js/bird.js"></script>
   <script src="js/scene.js"></script>
   <script src="js/obstacle.js"></script>
-  <script src="js/motio.js"></script>
-  <script src="js/jquery.overlaps.js"></script>
+
   <style>
 
-  #bird {  
-      background: url('images/kirby-sprite.png');
-  }  
+
   </style>
 </head>
 <body>
@@ -25,14 +22,9 @@
   <script>
   $(function() {
     var game = new FlappyGame("#screen");
-    game.build();
+    game.start();
 
-    var element = document.querySelector('#bird');
-    var sprite = new Motio(element, {
-        fps: 2,
-        frames: 2
-    });
-    sprite.play(); // start animation    
+
   });
 
   </script>

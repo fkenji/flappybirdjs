@@ -8,6 +8,11 @@ var FlappyGame = (function($) {
   }
 
   _FlappyGame.prototype.start = function() {
+    this.displaySplashScreen();
+    this.bindStartGameEvent();
+  }
+
+  _FlappyGame.prototype.startLoop = function() {
     console.log('Game Started!')
     var self = this;
     self.currentScene.start()
@@ -34,32 +39,36 @@ var FlappyGame = (function($) {
     clearInterval(this.interval)
     this.$el.stop()
     this.currentScene.stop()
-    this.bird.stop()    
+    this.bird.stop()  
+    $("*").stop()  
   }
 
   _FlappyGame.prototype.build = function(el) {
-    this.$el.addClass('screen')
-
     this.bird = new Bird(this.$el);
     this.bird.build();
 
     this.currentScene = new Scene(this.$el) 
     this.currentScene.build();
-
-    this.bindStartGameEvent();
   }
 
   _FlappyGame.prototype.bindStartGameEvent = function() {
-    var self = this,
-        gameStartEventHandler = function(event) {
+    var self = this;
+    var gameStartEventHandler = function(event) {
           if (event.keyCode == 32) {
-            self.start();            
+            self.build();
+            self.startLoop();            
+            self.$splashScreen.remove()
             $("body").off("keyup", gameStartEventHandler);
           }   
         }
 
     $("body").on("keyup", gameStartEventHandler);    
   };
+
+  _FlappyGame.prototype.displaySplashScreen = function() {
+    this.$splashScreen = $("<div>").addClass("splash")
+    // this.$el.html(this.$splashScreen);
+  }  
 
   return _FlappyGame;
 

@@ -1,4 +1,4 @@
-var Bird = (function ($) {
+var Bird = (function ($, Motio) {
   
 
   function _Bird(screen) {
@@ -11,6 +11,12 @@ var Bird = (function ($) {
 
   _Bird.prototype.build = function() {
     this.$screen.append(this.$el);
+    var element = document.querySelector('#bird');
+    var sprite = new Motio(element, {
+        fps: 2,
+        frames: 2
+    });
+    sprite.play(); 
     this._bindEvents()
   }
 
@@ -58,4 +64,4 @@ var Bird = (function ($) {
 
   return _Bird;
 
-})(jQuery);
+})(jQuery, Motio);

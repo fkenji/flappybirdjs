@@ -67,7 +67,9 @@ var FlappyGame = (function($) {
 
   _FlappyGame.prototype.displaySplashScreen = function() {
     this.$splashScreen = $("<div>").addClass("splash")
-    // this.$el.html(this.$splashScreen);
+    this.$splashScreen.append("<h1 class='gametitle'>Snappy Bird</h1>")
+    this.$splashScreen.append("<p class='instructions'>press spacebar to start!</p>")
+    this.$el.html(this.$splashScreen);
   }  
 
   return _FlappyGame;

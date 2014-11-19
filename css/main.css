@@ -1,8 +1,15 @@
+@import url(http://fonts.googleapis.com/css?family=Luckiest+Guy);
+
+body {
+  padding: 0;
+  margin: 0
+}
+
 #screen {
   height: 75%;
   position: relative;
   overflow: hidden;
-  background-color: lightblue;
+  background-color: #6555ED;
   z-index:0;
 }
 
@@ -45,5 +52,20 @@
 .splash {
   width: 100%;
   height: 100%;
-  background-color: lightblue;
+  background-color: #42D6AC;  
+}
+
+.gametitle {
+  font-family: 'Luckiest Guy', cursive;
+  font-size:90px;
+  color: red;
+  text-transform: uppercase;
+  top: 20%;
+  position: absolute;
+}
+.instructions {
+  top: 40%;
+  position: absolute; 
+  font-family: "Helvetica";
+  font-size:20px;
 }

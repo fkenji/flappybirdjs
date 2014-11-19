@@ -4,11 +4,13 @@ var FlappyGame = (function($) {
   function _FlappyGame(sourceEl) {
     this.$el = $(sourceEl)
     this.scene = null;
-    this.previousScene = null;
+    this.previousScene = null;    
   }
 
   _FlappyGame.prototype.start = function() {
+    console.log('Game Started!')
     var self = this;
+    self.currentScene.start()
     this.interval = setInterval(function() {
       if(self.currentScene.hasCollisionsWith(self.bird) || self.bird.hasGoneOutbounds()){
         self.end()
@@ -29,7 +31,6 @@ var FlappyGame = (function($) {
   }
 
   _FlappyGame.prototype.end = function() {
-
     clearInterval(this.interval)
     this.$el.stop()
     this.currentScene.stop()
@@ -43,9 +44,22 @@ var FlappyGame = (function($) {
     this.bird.build();
 
     this.currentScene = new Scene(this.$el) 
-    this.currentScene.build();    
-    this.currentScene.start();
+    this.currentScene.build();
+
+    this.bindStartGameEvent();
   }
+
+  _FlappyGame.prototype.bindStartGameEvent = function() {
+    var self = this,
+        gameStartEventHandler = function(event) {
+          if (event.keyCode == 32) {
+            self.start();            
+            $("body").off("keyup", gameStartEventHandler);
+          }   
+        }
+
+    $("body").on("keyup", gameStartEventHandler);    
+  };
 
   return _FlappyGame;
 

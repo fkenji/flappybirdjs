@@ -17,6 +17,7 @@ var Bird = (function ($) {
   _Bird.prototype._bindEvents = function() {
     var timeout = 0
     var self = this
+    
     $("body").on("keyup", function(event) {
         if (event.keyCode == 32) {
             var height = 100
@@ -43,7 +44,6 @@ var Bird = (function ($) {
 
   _Bird.prototype.stop = function() {
     $("body").off('keyup')
-    
     this.$el.stop() 
     this.$el.clearQueue() 
   }

@@ -39,7 +39,7 @@ var Scene = (function($) {
   }
 
   _Scene.prototype.aboutToEnd = function() {
-    return this.$el.position().left + this.$screen.width() < (this.$screen.width())
+    return this.$el.position().left + this.$screen.width() < (this.$screen.width() + 8)
   }  
 
   _Scene.prototype.destroy = function() {

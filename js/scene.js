@@ -11,10 +11,8 @@ var Scene = (function($) {
     this.$el.width(this.$screen.width());
     this.$el.height(this.$screen.height());
 
-    this.x = this.$screen.width();
+    this.x = this.$screen.width() - 5;
     this.el = this.$el.get(0);
-    this.buffer = 200;
-
     this.el.style.left = this.x + 'px';
 
     this.obstacles = []
@@ -44,7 +42,6 @@ var Scene = (function($) {
   }  
 
   _Scene.prototype.destroy = function() {
-    console.log('destroying', this)
     this.$el.remove();
   }
 

@@ -63,9 +63,21 @@ body {
   top: 20%;
   position: absolute;
 }
+
 .instructions {
   top: 40%;
   position: absolute; 
   font-family: "Helvetica";
   font-size:20px;
+}
+
+.gameover {
+  font-family: 'Luckiest Guy', cursive;
+  font-size:90px;
+  color: red;
+  text-transform: uppercase;
+  top: 35%;
+  left: 35%;
+  position: absolute;
+  z-index:200;
 }

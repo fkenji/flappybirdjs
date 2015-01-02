@@ -3,7 +3,9 @@ var FlappyGame = (function($) {
   var STATE_DISPLAY_SPLASH_SCREEN = 0,
       STATE_WAIT_FOR_SPLASH_SCREEN_INPUT = 10,
       STATE_INIT_GAME = 20,
-      STATE_PLAYING_GAME = 30;
+      STATE_PLAYING_GAME = 30,
+      STATE_GAME_OVER = 40,
+      STATE_END = 50;
 
   var KEY_SPACEBAR = 32;
 
@@ -32,6 +34,12 @@ var FlappyGame = (function($) {
       case STATE_PLAYING_GAME:
            this.gameFunction = this.runGame;
            break;
+      case STATE_GAME_OVER:
+           this.gameFunction = this.showGameOver;
+           break;
+      case STATE_END:
+           this.gameFunction = this.end;
+           break;
     }
 
   }
@@ -54,7 +62,7 @@ var FlappyGame = (function($) {
   }
 
   _FlappyGame.prototype.end = function() {
-    alert('end')
+    
   }
 
 
@@ -111,13 +119,11 @@ var FlappyGame = (function($) {
     }
 
 
-    if(this.currentScene.hasCollisionsWith(this.bird) || this.bird.hasGoneOutbounds()){
-      // this.end();
+    if((this.previousScene && this.previousScene.hasCollisionsWith(this.bird)) ||
+      this.currentScene.hasCollisionsWith(this.bird) || this.bird.hasGoneOutbounds()){
+      this.switchState(STATE_GAME_OVER);
     }
 
-    // if(this.previousScene && this.previousScene.hasEnded()) {
-    //   this.previousScene.destroy()
-    // }    
   }
 
 
@@ -125,6 +131,12 @@ var FlappyGame = (function($) {
     if(this.keyPressedList[KEY_SPACEBAR]) {
       this.bird.fly();
     }
+  }
+
+  _FlappyGame.prototype.showGameOver = function() {
+    var $gameover = $("<h1 class='gameover'>Game over!</h1>")
+    this.$el.append($gameover);    
+    switchState(STATE_END)
   }
 
   return _FlappyGame;

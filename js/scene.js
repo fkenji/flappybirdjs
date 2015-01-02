@@ -19,8 +19,8 @@ var Scene = (function($) {
     this.el.style.left = this.x + 'px';
 
     this.obstacles = []
-    this.obstacles.push(new Obstacle({ source: this.$el, position: "5%",}))
-    this.obstacles.push(new Obstacle({ source: this.$el, position: "45%",}))
+    this.obstacles.push(new Obstacle({ source: this.$el, position: "33%",}))
+    this.obstacles.push(new Obstacle({ source: this.$el, position: "55%",}))
     this.obstacles.push(new Obstacle({ source: this.$el, position: "85%",}))
 
     this.obstacles.forEach(function(obstacle){

@@ -1,5 +1,8 @@
 var Scene = (function($) {
 
+  var SCENE_SPEED = 6;
+
+
   function _Scene(screen) {
     this.$screen = $(screen);
 
@@ -11,7 +14,7 @@ var Scene = (function($) {
     this.$el.width(this.$screen.width());
     this.$el.height(this.$screen.height());
 
-    this.x = this.$screen.width() - 5;
+    this.x = this.$screen.width() - 10;
     this.el = this.$el.get(0);
     this.el.style.left = this.x + 'px';
 
@@ -25,7 +28,7 @@ var Scene = (function($) {
     });
 
     this.$screen.append(this.$el);
-    this.deltaX = 4;
+    this.deltaX = SCENE_SPEED;
   }
 
   _Scene.prototype.update = function() {

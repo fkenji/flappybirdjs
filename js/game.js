@@ -54,11 +54,7 @@ var FlappyGame = (function($) {
   }
 
   _FlappyGame.prototype.end = function() {
-    clearInterval(this.interval)
-    this.$el.stop()
-    this.currentScene.stop()
-    this.bird.stop()  
-    $("*").stop()  
+    alert('end')
   }
 
 
@@ -92,15 +88,15 @@ var FlappyGame = (function($) {
   _FlappyGame.prototype.initGame = function() {
     this.$splashScreen.remove();
     this.bird = new Bird(this.$el);
-    this.bird.build();
     this.currentScene = new Scene(this.$el) 
     this.switchState(STATE_PLAYING_GAME);
   }
 
   _FlappyGame.prototype.runGame = function() {
 
-
     this.currentScene.update();
+    this.checkKeys();
+    this.bird.update();
 
     if(this.currentScene.aboutToEnd()) {
       this.previousScene = this.currentScene;
@@ -115,9 +111,9 @@ var FlappyGame = (function($) {
     }
 
 
-    // if(this.currentScene.hasCollisionsWith(this.bird) || this.bird.hasGoneOutbounds()){
-    //   this.end();
-    // }
+    if(this.currentScene.hasCollisionsWith(this.bird) || this.bird.hasGoneOutbounds()){
+      // this.end();
+    }
 
     // if(this.previousScene && this.previousScene.hasEnded()) {
     //   this.previousScene.destroy()
@@ -125,7 +121,12 @@ var FlappyGame = (function($) {
   }
 
 
-  return _FlappyGame;
+  _FlappyGame.prototype.checkKeys = function() {
+    if(this.keyPressedList[KEY_SPACEBAR]) {
+      this.bird.fly();
+    }
+  }
 
+  return _FlappyGame;
 
 })(jQuery);

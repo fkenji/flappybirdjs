@@ -98,28 +98,32 @@ var FlappyGame = (function($) {
   }
 
   _FlappyGame.prototype.runGame = function() {
+
+
     this.currentScene.update();
 
-    if(this.currentScene.hasEnded()) {
-      console.log('creating new scene');
-      this.currentScene.destroy();
-      this.currentScene = new Scene(this.$el);
+    if(this.currentScene.aboutToEnd()) {
+      this.previousScene = this.currentScene;
+      this.currentScene = new Scene("#screen");
+    }    
+
+    if(this.previousScene){
+      this.previousScene.update();
+      if(this.previousScene.hasEnded()) {
+        this.previousScene.destroy();
+      }      
     }
+
+
     // if(this.currentScene.hasCollisionsWith(this.bird) || this.bird.hasGoneOutbounds()){
     //   this.end();
-    // }
-
-    // if(this.currentScene.aboutToEnd()) {
-    //       this.previousScene = this.currentScene;
-    //       this.currentScene = new Scene("#screen");
-    //       this.currentScene.build()
-    //       this.currentScene.start()
     // }
 
     // if(this.previousScene && this.previousScene.hasEnded()) {
     //   this.previousScene.destroy()
     // }    
   }
+
 
   return _FlappyGame;
 

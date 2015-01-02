@@ -10,9 +10,12 @@ var Scene = (function($) {
     //scenes should have the same size as the base screen
     this.$el.width(this.$screen.width());
     this.$el.height(this.$screen.height());
+
     this.x = this.$screen.width();
     this.el = this.$el.get(0);
     this.buffer = 200;
+
+    this.el.style.left = this.x + 'px';
 
     this.obstacles = []
     this.obstacles.push(new Obstacle({ source: this.$el, position: "5%",}))
@@ -28,21 +31,21 @@ var Scene = (function($) {
   }
 
   _Scene.prototype.update = function() {
-    console.log(this.$el.get(0).style.left)
     this.x = this.x - this.deltaX;
     this.el.style.left = this.x + 'px';
   }
 
   _Scene.prototype.hasEnded = function() {
-    return this.$el.position().left <= - (this.$screen.width() + this.buffer);
+    return this.$el.position().left <= - (this.$screen.width());
   }
 
   _Scene.prototype.aboutToEnd = function() {
-    return this.$el.position().left <= 0
+    return this.$el.position().left  <= 0
   }  
 
   _Scene.prototype.destroy = function() {
-    this.$el.remove()
+    console.log('destroying', this)
+    this.$el.remove();
   }
 
   _Scene.prototype.stop = function() {
